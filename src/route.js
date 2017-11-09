@@ -41,9 +41,7 @@ export default class Route extends Component {
   render() {
     return(
       <View style={{flex:1}}>
-      <TabNavigator
-        tabBarStyle={{height: 50}}
-      >
+      <TabNavigator>
         <TabNavigator.Item
           selected = {this.state.selectedTab === 'New'}
           title='最新'

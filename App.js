@@ -7,5 +7,16 @@
 import React, { Component } from 'react';
 import First from './src/first'
 
-export default First
+import {StatusBar, View} from 'react-native'
+
+export default class App extends Component {
+    render() {
+        return (
+            <View style={{flex: 1}}>
+                <StatusBar hidden={true} />
+                <First></First>
+            </View>
+        )
+    }
+}
 
