@@ -10,25 +10,14 @@ import {
   View
 } from 'react-native'
 
-class NewBar extends Component {
-  render() {
-    return (
-      <View style={{backgroundColor:"red", flex:1}}>
-        <Text>new</Text>
-      </View>
-    )
-  }
-}
+import { New, Hot, Node, My } from './navpage'
 
-class Hot extends Component {
-  render() {
-    return (
-      <View style={{backgroundColor:"yellow", flex:1}}>
-        <Text>Hot</Text>
-      </View>
-    )
-  }
-}
+const NavList = [
+  {tab: "New", title: "最新", icon: 'dropbox', component: New},
+  {tab: "Hot", title: "最热", icon: 'google-photos', component: Hot},
+  {tab: "Node", title: "主题", icon: 'gnome', component: Node},
+  {tab: "My", title: "我的", icon: 'account', component: My},
+]
 
 export default class Route extends Component {
   constructor(props) {
@@ -42,30 +31,20 @@ export default class Route extends Component {
     return(
       <View style={{flex:1}}>
       <TabNavigator>
-        <TabNavigator.Item
-          selected = {this.state.selectedTab === 'New'}
-          title='最新'
-          renderIcon={() => <Icon style={styles.icon} name={ 'dropbox' } size={25} color={'gray'}/>}
-          renderSelectedIcon={() => <Icon style={styles.icon} name={ 'dropbox' } size={25} color={'#4E78E7'}/>}
-          onPress={() => this.setState({ selectedTab: 'New' })}><NewBar /></TabNavigator.Item>
-        <TabNavigator.Item
-          selected = {this.state.selectedTab === 'Hot'}
-          title='最热'
-          renderIcon={() => <Icon style={styles.icon} name={ 'google-photos' } size={25} color={'gray'}/>}
-          renderSelectedIcon={() => <Icon style={styles.icon} name={ 'google-photos' } size={25} color={'#4E78E7'}/>}
-          onPress={() => this.setState({ selectedTab: 'Hot' })}><Hot /></TabNavigator.Item>
-          <TabNavigator.Item
-          selected = {this.state.selectedTab === 'Node'}
-          title='主题'
-          renderIcon={() => <Icon style={styles.icon} name={ 'gnome' } size={25} color={'gray'}/>}
-          renderSelectedIcon={() => <Icon style={styles.icon} name={ 'gnome' } size={25} color={'#4E78E7'}/>}
-          onPress={() => this.setState({ selectedTab: 'Node' })}><NewBar /></TabNavigator.Item>
-          <TabNavigator.Item
-          selected = {this.state.selectedTab === 'My'}
-          title='我的'
-          renderIcon={() => <Icon style={styles.icon} name={ 'account' } size={25} color={'gray'}/>}
-          renderSelectedIcon={() => <Icon style={styles.icon} name={ 'account' } size={25} color={'#4E78E7'}/>}
-          onPress={() => this.setState({ selectedTab: 'My' })}><Hot /></TabNavigator.Item>
+        {
+          NavList.map((nav) => {
+            return (
+              <TabNavigator.Item
+                key = {nav.tab}
+                selected = {this.state.selectedTab === nav.tab}
+                title={nav.title}
+                //titleStyle={{marginBottom:2}}
+                renderIcon={() => <Icon style={styles.icon} name={ nav.icon } size={25} color={'gray'}/>}
+                renderSelectedIcon={() => <Icon style={styles.icon} name={ nav.icon } size={25} color={'#4E78E7'}/>}
+                onPress={() => this.setState({ selectedTab: nav.tab })}><nav.component /></TabNavigator.Item>
+            )
+          })
+        }
       </TabNavigator>
       </View>
     )
@@ -74,6 +53,6 @@ export default class Route extends Component {
 
 const styles = StyleSheet.create({
   icon: {
-    marginBottom: -3
+    marginBottom: -2
   }
 })
