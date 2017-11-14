@@ -31,4 +31,23 @@ const api = {
 
 export const api;
 
-export function getFetch = ()
+const paramsQs = (url, params) {
+  if(params) {
+    let paramsStr = '';
+    for (var key in params) {
+      paramsStr += '&' + key + '=' + params[key]
+    }
+    paramsStr.replace('&', '?')
+    return url + paramsStr
+  } else {
+    return url
+  }
+}
+
+const Request = (url, params, s_key) {
+  return (dispatch) => {
+    fetch(paramsQs(url, params))
+      .then(res => res.json())
+      .then(json)
+  }
+}
