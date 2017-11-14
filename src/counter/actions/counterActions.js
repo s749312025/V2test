@@ -1,13 +1,20 @@
 import * as types from './actionTypes'
 
-export function increment() {
+export const increment =  () => {
   return {
     type: types.INCREMENT
   }
 }
 
-export function decrement() {
+export const decrement = () => {
   return {
     type: types.DECREMENT
+  }
+}
+
+export const change = () => {
+  return {
+    type: types.CHANGE,
+    addl
   }
 }
