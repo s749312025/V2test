@@ -12,6 +12,8 @@ import {
 
 import { New, Hot, Node, My } from './navpage'
 
+import Header from './components/header/header'
+
 const NavList = [
   {tab: "New", title: "最新", icon: 'dropbox', component: New},
   {tab: "Hot", title: "最热", icon: 'google-photos', component: Hot},
@@ -23,13 +25,15 @@ export default class Route extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedTab: 'New'
+      selectedTab: 'New',
+      selectedTitle: '最新'
     }
   }
 
   render() {
     return(
       <View style={{flex:1}}>
+      <Header title={this.state.selectedTitle} />
       <TabNavigator>
         {
           NavList.map((nav) => {
@@ -38,10 +42,9 @@ export default class Route extends Component {
                 key = {nav.tab}
                 selected = {this.state.selectedTab === nav.tab}
                 title={nav.title}
-                //titleStyle={{marginBottom:2}}
                 renderIcon={() => <Icon style={styles.icon} name={ nav.icon } size={25} color={'gray'}/>}
                 renderSelectedIcon={() => <Icon style={styles.icon} name={ nav.icon } size={25} color={'#4E78E7'}/>}
-                onPress={() => this.setState({ selectedTab: nav.tab })}><nav.component /></TabNavigator.Item>
+                onPress={() => this.setState({ selectedTab: nav.tab,  selectedTitle: nav.title})}><nav.component /></TabNavigator.Item>
             )
           })
         }

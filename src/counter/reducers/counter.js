@@ -16,6 +16,12 @@ export default counter = (state = initialState, action = {}) => {
         ...state,
         count: state.count - 1
       }
+      case types.CHANGE: {
+        return {
+          ...state,
+          count: state.count + 2
+        }
+      }
     default:
       return state;
   }

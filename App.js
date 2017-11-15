@@ -13,7 +13,8 @@ export default class App extends Component {
     render() {
         return (
             <View style={{flex: 1}}>
-                <StatusBar hidden={true} />
+                {/* <StatusBar hidden={true} /> */}
+                <StatusBar translucent ={true} backgroundColor={'#333'} />
                 <First></First>
             </View>
         )
