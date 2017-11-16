@@ -14,7 +14,7 @@ export default class App extends Component {
         return (
             <View style={{flex: 1}}>
                 {/* <StatusBar hidden={true} /> */}
-                <StatusBar translucent ={true} backgroundColor={'#333'} />
+                <StatusBar translucent ={true} backgroundColor={'#333'} barStyle={'light-content'}/>
                 <First></First>
             </View>
         )
