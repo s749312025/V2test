@@ -1,4 +1,13 @@
 import React, { Component } from 'react';
+import { createStore, applyMiddleware, compose  } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk'
+
+import {allReducers} from './data/reducers/allReducers';
+
+const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+
+const store = createStoreWithMiddleware(allReducers);
 
 import {
   Text,
@@ -10,7 +19,9 @@ import Route from './route'
 export default class Home extends Component {
   render() {
     return (
-      <Route></Route>
+      <Provider store={ store }>  
+        <Route/>  
+      </Provider>
     )
   }
 }

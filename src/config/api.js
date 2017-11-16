@@ -21,7 +21,7 @@ const replies = 'https://www.v2ex.com/api/replies/show.json'
 
 const getPerson = 'https://www.v2ex.com/api/members/show.json'
 
-const api = {
+export const api = {
   lastList,
   hotList,
   getinfo,
@@ -29,9 +29,7 @@ const api = {
   getPerson
 }
 
-export const api;
-
-const paramsQs = (url, params) {
+const paramsQs = (url, params) => {
   if(params) {
     let paramsStr = '';
     for (var key in params) {
@@ -44,10 +42,18 @@ const paramsQs = (url, params) {
   }
 }
 
-const Request = (url, params, s_key) {
+export const Request = async (url, params, s_key) => {
+  let response = await fetch(paramsQs(url, params));
+  let responseJson = await response.json();
+  return responseJson;
+}
+
+
+/* const Request = (url, params, s_key) {
   return (dispatch) => {
     fetch(paramsQs(url, params))
       .then(res => res.json())
       .then(json)
   }
 }
+ */
