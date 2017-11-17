@@ -12,7 +12,7 @@ import {StatusBar, View} from 'react-native'
 export default class App extends Component {
     render() {
         return (
-            <View style={{flex: 1}}>
+            <View style={{flex: 1, backgroundColor: '#efefef'}}>
                 {/* <StatusBar hidden={true} /> */}
                 <StatusBar translucent ={true} backgroundColor={'#333'} barStyle={'light-content'}/>
                 <First></First>

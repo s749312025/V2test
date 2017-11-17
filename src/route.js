@@ -44,7 +44,7 @@ export default class Route extends Component {
                 title={nav.title}
                 renderIcon={() => <Icon style={styles.icon} name={ nav.icon } size={25} color={'gray'}/>}
                 renderSelectedIcon={() => <Icon style={styles.icon} name={ nav.icon } size={25} color={'#4E78E7'}/>}
-                onPress={() => this.setState({ selectedTab: nav.tab,  selectedTitle: nav.title})}><nav.component /></TabNavigator.Item>
+                onPress={() => this.setState({ selectedTab: nav.tab,  selectedTitle: nav.title})}><nav.component/></TabNavigator.Item>
             )
           })
         }
