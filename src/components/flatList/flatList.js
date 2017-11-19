@@ -11,7 +11,7 @@ import {
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import moment from 'moment'
+import {timeConvert} from '../../config/common'
 
 class ListItem extends Component {
   constructor(props) {
@@ -21,6 +21,7 @@ class ListItem extends Component {
   render() {
     const {item} = this.props;
     let image = 'https:' + item.member.avatar_normal
+    let time = timeConvert(item.last_touched, 'X').fromNow();
     return(
       <View style={styles.item}>
         <View style={styles.ceater}>
@@ -34,7 +35,7 @@ class ListItem extends Component {
                 <Text style={styles.count}>{item.replies}</Text>
               </View>
             </View>
-            <Text style={styles.last}>最后回复：{item.last_touched}</Text>
+            <Text style={styles.last}>最后回复：{time}</Text>
           </View>
         </View>
         <Text style={styles.title}>{item.title}</Text>

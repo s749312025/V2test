@@ -2,10 +2,16 @@ import * as types from './actionsTypes'
 
 import {api, Request} from '../../config/api'
 
-export const getLatest = (rr) => {
-  let response = [{content: 'sas'},{content: 'sas'},{content: 'sas'},{content: 'sas'},{content: 'sas'},{content: 'sas'}]
+export const getLatest = (data) => {
   return {
     type: types.GETLATEST,
-    data: rr
+    data: data
+  }
+}
+
+export const getHot = (data) => {
+  return {
+    type: types.GETHOT,
+    data: data
   }
 }
