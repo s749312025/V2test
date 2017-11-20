@@ -37,7 +37,6 @@ class Hot extends Component {
 }
 
 export default connect ((state, myProps) => {
-  console.log(state.NewShowList.hotList)
   return {
     listData: state.NewShowList.hotList
   }

@@ -5,6 +5,7 @@ import {
   Image,
   StyleSheet,
   ScrollView,
+  TouchableOpacity,
   FlatList,
   View
 } from 'react-native'
@@ -23,15 +24,15 @@ class ListItem extends Component {
     let image = 'https:' + item.member.avatar_normal
     let time = timeConvert(item.last_touched, 'X').fromNow();
     return(
-      <View style={styles.item}>
+      <TouchableOpacity style={styles.item} activeOpacity={0.5} onPress={() =>{alert(item.id)}}>
         <View style={styles.ceater}>
           <Image style={styles.img} source={{uri:image}} />
           <View style={styles.attach}>
             <View style={styles.firstline}>
               <Text>{item.member.username}</Text>
               <View style={styles.discuss}>
-                <Text style={styles.node}>{item.node.title}</Text>
-                <Icon style={styles.icon} name={ 'comment-text-outline' } size={13} color={'gray'} />
+                <Text onPress={() => {alert(123)}} style={styles.node}>{item.node.title}</Text>
+                <Icon style={styles.icon} name={ 'comment-text-outline' } size={13} color={'#aaa'} />
                 <Text style={styles.count}>{item.replies}</Text>
               </View>
             </View>
@@ -39,7 +40,7 @@ class ListItem extends Component {
           </View>
         </View>
         <Text style={styles.title}>{item.title}</Text>
-      </View>
+      </TouchableOpacity>
       //<Text style={{height:30, backgroundColor: '#999', marginBottom: 5}}>{item.content}</Text>
     )
   }
@@ -58,9 +59,14 @@ export default class Scroll extends Component {
       />
     )
   }
+  _initFunc = (listData, freshEvent) => {
+    if(!listData) {
+      freshEvent()
+    }
+  }
   render() {
     const {listData, freshEvent} = this.props;
-
+    this._initFunc(listData, freshEvent)
     return (
       <View style={{flex:1}}>
         <FlatList
@@ -112,7 +118,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#eee'
   },
   icon: {
-    marginTop: 4,
+    marginTop: 5,
     marginRight: 3
   },
   discuss: {
