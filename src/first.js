@@ -5,6 +5,10 @@ import thunk from 'redux-thunk'
 
 import {allReducers} from './data/reducers/allReducers';
 
+import {
+  View
+} from 'react-native'
+
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 
 const store = createStoreWithMiddleware(allReducers);
@@ -14,13 +18,16 @@ import {
   StyleSheet,
 } from 'react-native'
 
-import Route from './route'
+import NavTab from './navTab'
+import RootNavigator from './route'
 
 export default class Home extends Component {
   render() {
     return (
       <Provider store={ store }>  
-        <Route/>  
+        <View style={{flex:1}}>
+          <RootNavigator/>  
+        </View>
       </Provider>
     )
   }
