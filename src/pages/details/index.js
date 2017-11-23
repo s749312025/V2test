@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { View, Text } from 'react-native'
+import { View, Text, ScrollView } from 'react-native'
 
 import Details from './details'
 import Replies from './replies'
@@ -8,15 +8,14 @@ import Replies from './replies'
 class AllReplies extends React.Component {
   constructor(props) {
     super(props);
-
   }
 
   render() {
     return(
-      <View>
-        <Details />
+      <ScrollView>
+        <Details info={this.props.navigation.state.params} />
         <Replies />
-      </View>
+      </ScrollView>
     );
   }
 }

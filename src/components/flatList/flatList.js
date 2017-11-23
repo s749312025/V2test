@@ -18,13 +18,16 @@ class ListItem extends Component {
   constructor(props) {
     super(props);
   }
+  navigatorTo = (item) => {
+    global.navigation.navigate('Details', item)
+  }
   
   render() {
     const {item} = this.props;
     let image = 'https:' + item.member.avatar_normal
     let time = timeConvert(item.last_touched, 'X').fromNow();
     return(
-      <TouchableOpacity style={styles.item} activeOpacity={0.5} onPress={() =>{alert(item.id)}}>
+      <TouchableOpacity style={styles.item} activeOpacity={0.8} onPress={() => {this.navigatorTo(item)}}>
         <View style={styles.ceater}>
           <Image style={styles.img} source={{uri:image}} />
           <View style={styles.attach}>
@@ -95,6 +98,7 @@ const styles = StyleSheet.create({
   img: {
     height: 35,
     width: 35,
+    marginTop: 3,
     borderRadius: 3,
   },
   attach: {

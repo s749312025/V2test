@@ -28,10 +28,10 @@ export default class NavTab extends Component {
       selectedTab: 'New',
       selectedTitle: '最新'
     }
+    global.navigation = this.props.navigation
   }
 
   render() {
-    console.log(this.props)    
     return(
       <View style={{flex:1}}>
       <Header title={this.state.selectedTitle} />
@@ -45,7 +45,7 @@ export default class NavTab extends Component {
                 title={nav.title}
                 renderIcon={() => <Icon style={styles.icon} name={ nav.icon } size={25} color={'gray'}/>}
                 renderSelectedIcon={() => <Icon style={styles.icon} name={ nav.icon } size={25} color={'#4E78E7'}/>}
-                onPress={() => this.setState({ selectedTab: nav.tab,  selectedTitle: nav.title})}><nav.component navigation={this.props.navigation} /></TabNavigator.Item>
+                onPress={() => this.setState({ selectedTab: nav.tab,  selectedTitle: nav.title})}><nav.component /></TabNavigator.Item>
             )
           })
         }
