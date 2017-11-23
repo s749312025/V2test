@@ -35,7 +35,7 @@ const paramsQs = (url, params) => {
     for (var key in params) {
       paramsStr += '&' + key + '=' + params[key]
     }
-    paramsStr.replace('&', '?')
+    paramsStr = paramsStr.replace(/&/, '?') 
     return url + paramsStr
   } else {
     return url

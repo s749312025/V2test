@@ -10,6 +10,9 @@ import {
   View
 } from 'react-native'
 
+import Loading from '../../components/loading'
+
+
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {timeConvert} from '../../config/common'

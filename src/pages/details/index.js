@@ -11,10 +11,11 @@ class AllReplies extends React.Component {
   }
 
   render() {
+    const params = this.props.navigation.state.params
     return(
       <ScrollView>
-        <Details info={this.props.navigation.state.params} />
-        <Replies />
+        <Details info={params} />
+        <Replies id={params.id}/>
       </ScrollView>
     );
   }

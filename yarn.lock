@@ -3507,6 +3507,12 @@ react-native-router-flux@^4.0.0-beta.24:
     prop-types "^15.6.0"
     react-navigation "^1.0.0-beta.19"
 
+react-native-spinkit@^1.1.1:
+  version "1.1.1"
+  resolved "http://registry.npm.taobao.org/react-native-spinkit/download/react-native-spinkit-1.1.1.tgz#3ae512f3978bc750b7c02639911e1710750d8539"
+  dependencies:
+    prop-types "^15.5.8"
+
 react-native-tab-navigator@^0.3.4:
   version "0.3.4"
   resolved "http://registry.npm.taobao.org/react-native-tab-navigator/download/react-native-tab-navigator-0.3.4.tgz#54a18f1ad06a09d4a0de81ff00416bc1b760c960"

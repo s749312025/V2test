@@ -14,6 +14,8 @@ class Details extends React.Component {
     const item = this.props.info;
     let image = 'https:' + item.member.avatar_normal
     let time = timeConvert(item.created, 'X').format('lll');
+    let r_time = timeConvert(item.last_touched, 'X').fromNow();
+    
     return(
       <View style={styles.item} activeOpacity={0.8} onPress={() => {this.navigatorTo(item)}}>
         <View style={styles.ceater}>
@@ -30,6 +32,7 @@ class Details extends React.Component {
         </View>
         <Text style={styles.title}>{item.title}</Text>
         <View style={styles.content}><Text style={styles.contentText}>{item.content}</Text></View>
+        <View><Text style={[styles.last, {marginTop: 15}]}>{item.replies} 回复 | 最新 {r_time}</Text></View>
       </View>
     );
   }
@@ -85,7 +88,7 @@ const styles = StyleSheet.create({
   content: {
     marginTop: 5,
     paddingTop: 5,
-    borderTopWidth: .5,
+    borderTopWidth: 0.4,
     borderTopColor: '#ddd'
   },
   contentText: {
