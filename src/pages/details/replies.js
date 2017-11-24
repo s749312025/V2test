@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import { View, Text, FlatList, StyleSheet, Image } from 'react-native'
 
+import HTMLView from 'react-native-htmlview';
+
 import {api, Request} from '../../config/api'
 
 import Loading from '../../components/loading'
@@ -34,12 +36,13 @@ class Replies extends React.Component {
 class Re_item extends Component {
   constructor(props, context) {
     super(props, context);
-    this.state = {data: this.props.data.reverse()}
+    //this.state = {data: this.props.data.reverse()}
   }
   _keyExtractor = (item, index) => item.id;
   _renderItem = ({item, index}) => {
     let image = 'https:' + item.member.avatar_normal
     let time = timeConvert(item.last_modified, 'X').fromNow();
+    let htmlContent = '<p>' + item.content_rendered + '</p>';
     return (
       <View style={styles.item}>
           <View style={styles.ceater}>
@@ -49,7 +52,13 @@ class Re_item extends Component {
               <Text style={styles.time}>{index + 1}楼 {time}</Text>
             </View>
           </View>
-          <Text style={styles.content}>{item.content}</Text>
+          {/* <Text style={styles.content}>{item.content}</Text> */}
+          {/* <Text style={styles.content}>{item.content_rendered}</Text> */}
+          <HTMLView 
+            value = {htmlContent}
+            stylesheet={contentStyle}
+            onLinkPress={(url) => console.log('clicked link: ', url)}
+          />
       </View>
     )
   }
@@ -57,7 +66,7 @@ class Re_item extends Component {
     return (
       <FlatList
         keyExtractor={this._keyExtractor}
-        data={this.state.data}
+        data={this.props.data}
         renderItem={this._renderItem}
       />
     )
@@ -66,12 +75,20 @@ class Re_item extends Component {
 
 
 export default Replies;
+const contentStyle = StyleSheet.create({
+  p: {
+    fontSize: 16,
+    lineHeight: 24,
+    color: '#333'
+  }
+})
 
 const styles = StyleSheet.create({
   item: {
     backgroundColor: '#fff',
     padding: 12,
-    marginBottom: 8
+    borderTopWidth: .4,
+    borderTopColor: '#ddd'
   },
   ceater: {
     marginBottom: 10,
@@ -94,8 +111,8 @@ const styles = StyleSheet.create({
     borderRadius: 3,
   },
   content: {
-    fontSize: 17,
-    lineHeight: 22,
+    fontSize: 16,
+    lineHeight: 24,
     color: '#333'
   }
 })
