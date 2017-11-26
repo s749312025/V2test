@@ -43,9 +43,16 @@ const paramsQs = (url, params) => {
 }
 
 export const Request = async (url, params, s_key) => {
-  let response = await fetch(paramsQs(url, params));
-  let responseJson = await response.json();
-  return responseJson;
+  try {
+    console.log(paramsQs(url, params))
+    let response = await fetch(paramsQs(url, params));
+    console.log(response)
+    let responseJson = await response.json();
+    return responseJson;
+  } catch (error) {
+    console.warn(error)
+  }
+
 }
 
 

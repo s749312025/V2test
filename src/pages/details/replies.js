@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { View, Text, FlatList, StyleSheet, Image } from 'react-native'
 
-import HTMLView from 'react-native-htmlview';
+import HtmlView from '../../components/htmlView';
 
 import {api, Request} from '../../config/api'
 
@@ -19,7 +19,6 @@ class Replies extends React.Component {
   getData = async (id) => {
     let response = await Request(api.replies, {topic_id: id})
     this.setState({data: response, loading: false})
-    console.log(response)
   }
   render() {
     if(this.state.loading) {
@@ -37,12 +36,14 @@ class Re_item extends Component {
   constructor(props, context) {
     super(props, context);
     //this.state = {data: this.props.data.reverse()}
+    this._renderItem = this._renderItem.bind(this)
+    console.log(this.props.data)
   }
   _keyExtractor = (item, index) => item.id;
-  _renderItem = ({item, index}) => {
+  _renderItem({item, index}){
     let image = 'https:' + item.member.avatar_normal
     let time = timeConvert(item.last_modified, 'X').fromNow();
-    let htmlContent = '<p>' + item.content_rendered + '</p>';
+    //let htmlContent = '<p>' + item.content_rendered + '</p>';
     return (
       <View style={styles.item}>
           <View style={styles.ceater}>
@@ -54,8 +55,8 @@ class Re_item extends Component {
           </View>
           {/* <Text style={styles.content}>{item.content}</Text> */}
           {/* <Text style={styles.content}>{item.content_rendered}</Text> */}
-          <HTMLView 
-            value = {htmlContent}
+          <HtmlView 
+            value = {item.content_rendered}
             stylesheet={contentStyle}
             onLinkPress={(url) => console.log('clicked link: ', url)}
           />
@@ -75,20 +76,20 @@ class Re_item extends Component {
 
 
 export default Replies;
-const contentStyle = StyleSheet.create({
+const contentStyle = {
   p: {
+    margin: 0,
     fontSize: 16,
     lineHeight: 24,
     color: '#333'
   }
-})
+}
 
 const styles = StyleSheet.create({
   item: {
     backgroundColor: '#fff',
     padding: 12,
-    borderTopWidth: .4,
-    borderTopColor: '#ddd'
+    marginBottom: 0.4
   },
   ceater: {
     marginBottom: 10,

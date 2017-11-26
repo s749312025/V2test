@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { View, Text, StyleSheet, Image } from 'react-native'
 
+import HtmlView from '../../components/htmlView';
 import {timeConvert} from '../../config/common'
 
 class Details extends React.Component {
@@ -15,7 +16,6 @@ class Details extends React.Component {
     let image = 'https:' + item.member.avatar_normal
     let time = timeConvert(item.created, 'X').format('lll');
     let r_time = timeConvert(item.last_touched, 'X').fromNow();
-    
     return(
       <View style={styles.item} activeOpacity={0.8} onPress={() => {this.navigatorTo(item)}}>
         <View style={styles.ceater}>
@@ -24,14 +24,19 @@ class Details extends React.Component {
             <View style={styles.firstline}>
               <Text>{item.member.username}</Text>
               <View style={styles.discuss}>
-                <Text onPress={() => {alert(123)}} style={styles.node}>{item.node.title}</Text>
+                <Text onPress={() => {alert(1234)}} style={styles.node}>{item.node.title}</Text>
               </View>
             </View>
             <Text style={styles.last}>创建于：{time}</Text>
           </View>
         </View>
         <Text style={styles.title}>{item.title}</Text>
-        <View style={styles.content}><Text style={styles.contentText}>{item.content}</Text></View>
+        <HtmlView 
+            value = {item.content_rendered}
+            stylesheet={contentStyle}
+            onLinkPress={(url) => console.log('clicked link: ', url)}
+          />
+        {/* <View style={styles.content}><Text style={styles.contentText}>{item.content}</Text></View> */}
         <View><Text style={[styles.last, {marginTop: 15}]}>{item.replies} 回复 | 最新 {r_time}</Text></View>
       </View>
     );
@@ -40,6 +45,17 @@ class Details extends React.Component {
 
 
 export default Details;
+const contentStyle = {
+  p: {
+    margin: 0,
+    fontSize: 16,
+    lineHeight: 24,
+    color: '#999'
+  },
+  img: {
+    marginTop: 0
+  }
+}
 
 const styles = StyleSheet.create({
   item: {
