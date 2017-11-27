@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { View, Text, StyleSheet, Image, Dimensions } from 'react-native'
 
 import HTMLView from 'react-native-htmlview';
+import HTML from 'react-native-render-html';
 
 export default class HtmlView extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {content: this.props.value}
-		this.state.content = this.state.content.replace(new RegExp("<p>","g"), '')
+		//this.state.content = this.state.content.replace(new RegExp("<br />","g"), '&#10;')
+		/* this.state.content = this.state.content.replace(new RegExp("<p>","g"), '')
 		.replace(new RegExp("</p>","g"), '<br />')
-		this.state.content = '<p>'+this.state.content+'</p>'
+		this.state.content = '<p>'+this.state.content+'</p>' */
 		console.log(this.state.content)
 	}
 	renderNode(node, index, siblings, parent, defaultRenderer) {
@@ -22,12 +24,13 @@ export default class HtmlView extends Component {
 	render() {
 		return (
 			<View>
-				<HTMLView
+				<HTML html={this.state.content} imagesMaxWidth={Dimensions.get('window').width-24} />
+				{/* <HTMLView
 					renderNode={this.renderNode}
 					value = {this.state.content}
 					stylesheet = {style(this.props.stylesheet)}
 					onLinkPress={(url) => console.log('clicked link: ', url)}
-				/>
+				/> */}
 			</View>
 		)
 	}
