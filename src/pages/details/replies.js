@@ -43,7 +43,7 @@ class Re_item extends Component {
   _renderItem({item, index}){
     let image = 'https:' + item.member.avatar_normal
     let time = timeConvert(item.last_modified, 'X').fromNow();
-    //let htmlContent = '<p>' + item.content_rendered + '</p>';
+    let htmlContent = '<p>' + item.content_rendered + '</p>';
     return (
       <View style={styles.item}>
           <View style={styles.ceater}>
@@ -56,7 +56,7 @@ class Re_item extends Component {
           {/* <Text style={styles.content}>{item.content}</Text> */}
           {/* <Text style={styles.content}>{item.content_rendered}</Text> */}
           <HtmlView 
-            value = {item.content_rendered}
+            value = {htmlContent}
             stylesheet={contentStyle}
             onLinkPress={(url) => console.log('clicked link: ', url)}
           />
@@ -78,10 +78,7 @@ class Re_item extends Component {
 export default Replies;
 const contentStyle = {
   p: {
-    margin: 0,
-    fontSize: 16,
-    lineHeight: 24,
-    color: '#333'
+    margin: 0
   }
 }
 
