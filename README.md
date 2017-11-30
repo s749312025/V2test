@@ -1,6 +1,7 @@
 # react-native V2ex app
 
 > 个人学习react-native的项目 兼容android / IOS
+> 使用了react-redux + react-native-vector-icons + react-native-render-html 等库
 
 ``` bash
 # install dependencies
