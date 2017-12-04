@@ -8,9 +8,12 @@ import {StatusBar, Button, View} from 'react-native'
 const RootNavigator = StackNavigator({
   Tab: {
     screen: NavTab,
-    navigationOptions: {
+    /* navigationOptions: {
       header: null
-    }
+    } */
+    /* navigationOptions: {
+      headerTitle: '123',
+    } */
   },
   Details: {
     screen: Details,
@@ -19,6 +22,9 @@ const RootNavigator = StackNavigator({
     }
   },
 }, {
+  initialRouteParams: {
+    title: '最新'
+  },
   navigationOptions: {
     headerStyle: {backgroundColor: '#333',paddingTop: StatusBar.currentHeight},
     headerTitleStyle: {color: '#ccc', fontWeight: 'normal', fontSize: 18, alignSelf:'center'},
