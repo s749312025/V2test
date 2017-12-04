@@ -76,7 +76,7 @@ const RootTabs = TabNavigator(tabObj, {
     },
     style: {
       backgroundColor: '#f8f8f8',
-      borderTopWidth: 0.2,
+      borderTopWidth: 0.4,
       borderTopColor: '#c2c2c2',
       height: 50
     },
